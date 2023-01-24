@@ -2,6 +2,7 @@
   "name": "itrn0/php-medoo-wrapper",
   "description": "A wrapper for the Medoo library that allows for easy fetching of rows.",
   "type": "library",
+  "license": "MIT",
   "require": {
     "php": ">=7.3",
     "ext-pdo": "*",
