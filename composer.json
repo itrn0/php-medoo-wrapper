@@ -1,0 +1,17 @@
+{
+  "name": "itrn0/php-medoo-wrapper",
+  "description": "A wrapper for the Medoo library that allows for easy fetching of rows.",
+  "type": "library",
+  "require": {
+    "php": ">=7.3",
+    "ext-pdo": "*",
+    "catfan/medoo": "^2.0.0",
+    "itrn0/php-sql-interpolator": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Itrn0\\MedooWrapper\\": "src/"
+    }
+  },
+  "minimum-stability": "dev"
+}
