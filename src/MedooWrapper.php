@@ -2,7 +2,6 @@
 
 namespace Itrn0\MedooWrapper;
 
-use Exception;
 use Generator;
 use Itrn0\SqlInterpolator\SqlInterpolator;
 use Medoo\Medoo;
@@ -85,10 +84,11 @@ class MedooWrapper extends Medoo
         while (true) {
             $item = $result->fetch($fetchFlags);
             if ($item === false) {
-                throw new MedooWrapperException("Medoo returned FALSE");
-            }
-            if (!$item) {
-                break;
+                $errorInfo = $result->errorInfo();
+                if (is_array($errorInfo) && $errorInfo[0] !== "00000") {
+                    throw new MedooWrapperException("Medoo fetch returns error: " . $errorInfo[2]);
+                }
+                return;
             }
             yield $item;
         }
