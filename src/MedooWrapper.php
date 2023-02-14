@@ -3,6 +3,7 @@
 namespace Itrn0\MedooWrapper;
 
 use Exception;
+use Generator;
 use Itrn0\SqlInterpolator\SqlInterpolator;
 use Medoo\Medoo;
 use PDO;
@@ -68,6 +69,29 @@ class MedooWrapper extends Medoo
             throw new MedooWrapperException("Medoo returned FALSE");
         }
         return $items;
+    }
+
+    /**
+     * Returns a generator that sequentially returns rows from the query result.
+     * @param $statement
+     * @param array $map
+     * @param int $fetchFlags
+     * @return Generator<int, array>
+     * @throws MedooWrapperException
+     */
+    public function fetchGenerator($statement, array $map = [], int $fetchFlags = PDO::FETCH_ASSOC): Generator
+    {
+        $result = $this->query($statement, $map);
+        while (true) {
+            $item = $result->fetch($fetchFlags);
+            if ($item === false) {
+                throw new MedooWrapperException("Medoo returned FALSE");
+            }
+            if (!$item) {
+                break;
+            }
+            yield $item;
+        }
     }
 
     /**
