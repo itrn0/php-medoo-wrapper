@@ -6,7 +6,7 @@
   "require": {
     "php": ">=7.3",
     "ext-pdo": "*",
-    "catfan/medoo": "^2.0.0",
+    "catfan/medoo": "^2.1.0",
     "itrn0/php-sql-interpolator": "^1.0"
   },
   "autoload": {

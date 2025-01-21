@@ -32,7 +32,7 @@ class MedooWrapper extends Medoo
      * @return PDOStatement
      * @throws MedooWrapperException
      */
-    public function exec($statement, array $map = [], callable $callback = null): PDOStatement
+    public function exec($statement, array $map = [], ?callable $callback = null): PDOStatement
     {
         return $this->_query($statement, $map, function ($statement, $map) use ($callback) {
             return parent::exec($statement, $map, $callback);
@@ -97,7 +97,7 @@ class MedooWrapper extends Medoo
     /**
      * @param $statement
      * @param array $map
-     * @param callable|null $callback
+     * @param callable $callback
      * @return PDOStatement
      * @throws MedooWrapperException
      */
